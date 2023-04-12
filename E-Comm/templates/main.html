@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <script src="{{ url_for('mainScript') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('mainStyle') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <title>main</title>
+</head>
+<body>
+    <div id="basketCount"><i class="fas fa-shopping-cart"></i>0</div>
+    <header id="title">E-Commerce Template</header>
+    
+    <div class="menu-icon">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <div class="menu-items">
+        <ul>
+        <li class="item" id="home">Home</li>
+            <li class="item">About Us</li>
+            <li class="item">Contact Us</li>
+            <li id="appearance">Light Mode</li>
+        </ul>
+    </div>
+
+
+{% block body %}
+    <div id="sectList">
+        <ul id="list">
+            <li class="list-item"> <img class="list-image"> <p class="list-title"></p> <p class="list-desc"></p><p class="list-price"></p></li>
+            <li class="list-item"> <img class="list-image"> <p class="list-title"></p> <p class="list-desc"></p><p class="list-price"></p></li>
+            <li class="list-item"> <img class="list-image"> <p class="list-title"></p> <p class="list-desc"></p><p class="list-price"></p></li>
+            <li class="list-item"> <img class="list-image"> <p class="list-title"></p> <p class="list-desc"></p><p class="list-price"></p></li>
+        </ul>
+    </div>
+{% endblock %}
+</body>
+</html>

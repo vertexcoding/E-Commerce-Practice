@@ -1,0 +1,164 @@
+#appearance:hover {
+    cursor: pointer;
+}
+#title {
+    font-size: 60px;
+    font-weight: bold;
+    background-color: rgb(40, 40, 40);
+}
+body {
+    background-color: rgb(21, 21, 21);
+    color: rgb(219, 219, 219);
+}
+/* Drop down navbar */
+.menu-icon {
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 15px;
+    position: absolute;
+    top: 6%;
+    right: 0%;
+    transform:translate(-50%, -50%);
+}
+.line {
+    width: 30px;
+    height: 3px;
+    background-color: rgb(219, 219, 219);
+    margin: 5px 0;
+}
+.menu-items {
+    display: none;
+    position: absolute;
+    top: 80px;
+    right: 0%;
+    bottom: 0;
+    height: auto;
+    padding: 10px;
+    border-color: rgb(219, 219, 219);
+}
+.menu-items.show {
+    display: block;
+}
+
+.menu-items ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-items li {
+    margin-bottom: 10px;
+}
+
+.menu-items a {
+    color: #333;
+    text-decoration: none;
+}
+#basketCount {
+    position: absolute;
+    top: 4%;
+    right: 6%;
+    font-size: 25px;
+}
+
+/* Main page products */
+#sectList {
+    position: absolute;
+    bottom: -80%;
+    left: 14%;
+    transform: translate(-50%, -50%);
+}
+.list-item {
+    position: relative;
+    width: 400px;
+    height: 200px;
+}
+.list-title {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    font-size: 20px;
+}
+.list-image {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+}
+.list-desc {
+    position: absolute;
+    top: 30%;
+    left: 75%;
+    white-space: none;
+    overflow: hidden;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+.list-price {
+    position: absolute;
+    top: 80%;
+    left: 57.5%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    font-weight: bold;  
+}
+#list {
+    list-style: none;
+    position: relative;
+}
+
+/* Rose-handbag.html */
+#roseHandbagImage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%)
+}
+#roseHandbagName {
+    position: absolute;
+    top: 18%;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#roseHandbagDescription {
+    position: absolute;
+    top: 22%;
+    width: 400px;
+    font-size: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#roseHandbagPrice {
+    position: absolute;
+    top: 80%;
+    left: 65%;
+    font-size: 40px;
+    font-weight: bold;
+}
+#addToCart {
+    font-size: 20px;
+}
+#addToCart:hover {
+    cursor: pointer;
+}
+#quantityAdjust {
+    position: absolute;
+    top: 85%;
+    left: 43%;
+}
+
+/* Checkout Page */
+#sectlist1 {
+    position: absolute;
+    top: 30%;
+    left: 14%;
+    transform: translate(-50%, -50%);
+    background-color: blue;
+}
+#checkoutList {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    background-color: blue;
+    list-style: none;
+}
