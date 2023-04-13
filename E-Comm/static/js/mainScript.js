@@ -195,20 +195,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Adding Items to checkout page by extracting JSON Hashmap Values and appending them to a UL
         function cartUpdate(itemName) {
-            i = 0;
+            i = -1;
             for (var key in itemName) {
                 if (itemName.hasOwnProperty(key)) {
-                    var listClass = ['list-title', 'list-price', 'list-desc', 'list-image']
+                    var listClass = ['list-titleC', 'list-priceC', 'list-descC', 'list-imageC']
                     i++;
                     var listItem = document.createElement('li');
                     listItem.className = listClass[i]
-                    listItem.innerHTML = itemName[key];
+                    if (listItem.className !== 'list-imageC') {
+                        listItem.innerHTML = itemName[key];
+                    } else {
+                        var img = document.createElement('img');
+                        img.src = itemName[key];
+                        img.width = 175;
+                        listItem.appendChild(img);
+                    }
+
                     checkoutList.appendChild(listItem);
                 }
             }
         }
         
         // Call the function
+        cartUpdate(handbagDeserialized);
+        cartUpdate(purseDeserialized);
+        cartUpdate(handbagDeserialized);
+        cartUpdate(purseDeserialized);
         cartUpdate(handbagDeserialized);
         cartUpdate(purseDeserialized);
 

@@ -153,12 +153,36 @@ body {
     top: 30%;
     left: 14%;
     transform: translate(-50%, -50%);
-    background-color: blue;
 }
 #checkoutList {
     position: relative;
     width: 400px;
     height: 200px;
-    background-color: blue;
     list-style: none;
+}
+.list-titleC {
+    position: relative;
+    top: 20%;
+    left: 40%;
+    font-size: 20px;
+}
+.list-imageC {
+    position: relative;
+    top: 0%;
+    left: 0%;
+}
+.list-descC {
+    position: relative;
+    top: 10%;
+    left: 15%;
+    white-space: none;
+    overflow: hidden;
+    display: none;
+}
+.list-priceC {
+    position: relative;
+    top: 60%;
+    left: 45%;
+    font-size: 20px;
+    font-weight: bold;  
 }
