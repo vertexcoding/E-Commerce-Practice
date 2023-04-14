@@ -162,18 +162,19 @@ body {
 }
 .list-titleC {
     position: relative;
-    top: 20%;
-    left: 40%;
+    top: 10%;
+    left: 45%;
     font-size: 20px;
 }
 .list-imageC {
     position: relative;
-    top: 0%;
+    top: -50%;
     left: 0%;
+    width: 175px;
 }
 .list-descC {
     position: relative;
-    top: 10%;
+    top: 20%;
     left: 15%;
     white-space: none;
     overflow: hidden;
@@ -181,8 +182,21 @@ body {
 }
 .list-priceC {
     position: relative;
-    top: 60%;
+    top: 3%;
     left: 45%;
     font-size: 20px;
     font-weight: bold;  
+}
+.checkout-single { 
+    position: relative;
+    text-align: center;
+    top: 35%;
+    left: 50%;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+}
+.checkout-single:hover {
+    cursor: pointer;
+    font-size: larger;
 }

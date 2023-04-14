@@ -165,56 +165,77 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     // Add to cart
-    handbagSerialized = localStorage.getItem('handbag');
-    handbagDeserialized = JSON.parse(handbagSerialized);
-
     let itemsInCart = [];
     addToCart = document.getElementById('addToCart');
+    const handbagSerialized = localStorage.getItem('handbag');
+    const handbagDeserialized = JSON.parse(handbagSerialized);
     addToCart.addEventListener('click', () => {
         const quantityValue = parseInt(quantityField.value);
         itemsInCart.push(quantityValue);
         const totalItemsInCart = itemsInCart.reduce((total, quantity) => total + quantity, 0);
         localStorage.setItem('itemsInCart', JSON.stringify(totalItemsInCart));
         basketCount.innerHTML = localStorage.getItem('itemsInCart');
+        localStorage.setItem('handbagC', JSON.stringify(handbagDeserialized));
     });
+
+
     }
 
 // Checkout page
     function checkout() {
         
         // Get items from local storage
-        handbagSerialized = localStorage.getItem('handbag');
+        handbagSerialized = localStorage.getItem('handbagC');
         const handbagDeserialized = JSON.parse(handbagSerialized);
 
         purseSerialized = localStorage.getItem('purse');
         const purseDeserialized = JSON.parse(purseSerialized);
 
-        // CheckoutListItem = <ul> - checkoutList = <li>
-        var checkoutListItem = document.getElementById('checkoutListItem');
+        // CheckoutList
         var checkoutList = document.getElementById('checkoutList');
 
         // Adding Items to checkout page by extracting JSON Hashmap Values and appending them to a UL
         function cartUpdate(itemName) {
             i = -1;
+            var divContainer = document.createElement('div');
             for (var key in itemName) {
                 if (itemName.hasOwnProperty(key)) {
                     var listClass = ['list-titleC', 'list-priceC', 'list-descC', 'list-imageC']
                     i++;
                     var listItem = document.createElement('li');
                     listItem.className = listClass[i]
-                    if (listItem.className !== 'list-imageC') {
+                    if (listItem.className !== 'list-imageC' && listItem.className !== 'list-priceC') {
                         listItem.innerHTML = itemName[key];
-                    } else {
+                    } else if (listItem.className === 'list-imageC') {
+                    // Item image
                         var img = document.createElement('img');
                         img.src = itemName[key];
                         img.width = 175;
                         listItem.appendChild(img);
+                    // Clear cart symbol
+                        var clearCart = document.createElement('div');
+                        var clearCartLi = document.createElement('li');
+                        clearCart.appendChild(clearCartLi);
+                        clearCartLi.className = 'fas fa-trash-alt';
+                        clearCart.className = 'checkout-single';
+                        divContainer.appendChild(clearCart);
+                    } else if (listItem.className === 'list-priceC') {
+                    // Price
+                        var listItemPrice = '$' + itemName[key];
+                        var listItemPriceElement = document.createElement('p');
+                        listItemPriceElement.innerHTML = listItemPrice;
+                        listItem.appendChild(listItemPriceElement);
                     }
+                    divContainer.appendChild(listItem);
 
-                    checkoutList.appendChild(listItem);
+                    divContainer.style.height = '200px';
                 }
             }
+            checkoutList.appendChild(divContainer);
         }
+
+
+
         
         // Call the function
         cartUpdate(handbagDeserialized);
@@ -223,6 +244,15 @@ document.addEventListener("DOMContentLoaded", () => {
         cartUpdate(purseDeserialized);
         cartUpdate(handbagDeserialized);
         cartUpdate(purseDeserialized);
+        cartUpdate(handbagDeserialized);
+        cartUpdate(purseDeserialized);
+
+        item = document.getElementsByClassName('checkout-single');
+        for (let i = 0; i <= item.length; i ++) {
+            item[i].addEventListener('click', () => {
+                item[i].parentNode.remove();
+            });
+        }
 
     }
 
