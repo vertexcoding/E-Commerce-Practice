@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     
     // Basket Count
+    basketCount.innerHTML = localStorage.getItem('itemsInCart');
     
     basketCount.addEventListener('mouseover', () => {
         basketCount.style.cursor = 'pointer';
@@ -73,33 +74,32 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 }
 
+// Products
+handbag = {
+    'title': 'Rose Handbag',
+    'price': 67.99,
+    'desc': 'Handbag description unavailable',
+    'image': '/static/handbag.png',
+}
+purse = {
+    'title': 'Tan Purse',
+    'price': 42.00,
+    'desc': 'Purse description unavailable',
+    'image': '/static/purse.png',
+}
+handbag2 = {
+    'title': 'Tan Handbag',
+    'price': 64.00,
+    'desc': 'Handbag description unavailable',
+    'image': '/static/handbag2.png',
+}
+
 
 
 // Main page
     function main() {
     // Add to basket
-        handbag = {
-            'title': 'Rose Handbag',
-            'price': 67.99,
-            'desc': 'Handbag description unavailable',
-            'image': '/static/handbag.png',
-        }
-        localStorage.setItem('handbag', JSON.stringify(handbag));
-        purse = {
-            'title': 'Tan Purse',
-            'price': 42.00,
-            'desc': 'Purse description unavailable',
-            'image': '/static/purse.png',
-        }
-        localStorage.setItem('purse', JSON.stringify(purse));
-        handbag2 = {
-            'title': 'Tan Handbag',
-            'price': 64.00,
-            'desc': 'Handbag description unavailable',
-            'image': '/static/handbag2.png',
-        }
 
-        const listitem = document.getElementsByClassName('list-item');
         const listimage = document.getElementsByClassName('list-image');
         const listtitle = document.getElementsByClassName('list-title');
         const listdesc = document.getElementsByClassName('list-desc');
@@ -114,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
         listtitle[0].innerHTML = handbag.title;
         listprice[0].innerHTML = '$' + handbag.price.toFixed(2);
 
-        localStorage.setItem('handbag', JSON.stringify(handbag));
+        localStorage.setItem('handbagC', JSON.stringify(handbag));
 
         // Purse
         listdesc[1].innerHTML = purse.desc;
@@ -164,95 +164,64 @@ document.addEventListener("DOMContentLoaded", () => {
             decreaseQuantity()
         });
 
-    // Add to cart
-    let itemsInCart = [];
-    addToCart = document.getElementById('addToCart');
-    const handbagSerialized = localStorage.getItem('handbag');
-    const handbagDeserialized = JSON.parse(handbagSerialized);
-    addToCart.addEventListener('click', () => {
-        const quantityValue = parseInt(quantityField.value);
-        itemsInCart.push(quantityValue);
-        const totalItemsInCart = itemsInCart.reduce((total, quantity) => total + quantity, 0);
-        localStorage.setItem('itemsInCart', JSON.stringify(totalItemsInCart));
-        basketCount.innerHTML = localStorage.getItem('itemsInCart');
-        localStorage.setItem('handbagC', JSON.stringify(handbagDeserialized));
-    });
-
-
+        let itemsInCart = [];
+        basketCount = document.getElementById('basketCount');
+        addToCart = document.getElementById('addToCart');
+        addToCart.addEventListener('click', () => {
+            const quantityValue = parseInt(quantityField.value);
+            itemsInCart.push(quantityValue);
+            const totalItemsInCart = itemsInCart.reduce((total, quantity) => total + quantity, 0);
+            localStorage.setItem('itemsInCart', JSON.stringify(totalItemsInCart));
+            basketCount.innerHTML = localStorage.getItem('itemsInCart');
+            cartUpdate(handbag);
+            alert("working");
+            
+        });
     }
 
-// Checkout page
-    function checkout() {
-        
-        // Get items from local storage
-        handbagSerialized = localStorage.getItem('handbagC');
-        const handbagDeserialized = JSON.parse(handbagSerialized);
+    // Add to cart
 
-        purseSerialized = localStorage.getItem('purse');
-        const purseDeserialized = JSON.parse(purseSerialized);
-
-        // CheckoutList
-        var checkoutList = document.getElementById('checkoutList');
-
-        // Adding Items to checkout page by extracting JSON Hashmap Values and appending them to a UL
-        function cartUpdate(itemName) {
-            i = -1;
-            var divContainer = document.createElement('div');
-            for (var key in itemName) {
-                if (itemName.hasOwnProperty(key)) {
-                    var listClass = ['list-titleC', 'list-priceC', 'list-descC', 'list-imageC']
-                    i++;
-                    var listItem = document.createElement('li');
-                    listItem.className = listClass[i]
-                    if (listItem.className !== 'list-imageC' && listItem.className !== 'list-priceC') {
-                        listItem.innerHTML = itemName[key];
-                    } else if (listItem.className === 'list-imageC') {
-                    // Item image
-                        var img = document.createElement('img');
-                        img.src = itemName[key];
-                        img.width = 175;
-                        listItem.appendChild(img);
-                    // Clear cart symbol
-                        var clearCart = document.createElement('div');
-                        var clearCartLi = document.createElement('li');
-                        clearCart.appendChild(clearCartLi);
-                        clearCartLi.className = 'fas fa-trash-alt';
-                        clearCart.className = 'checkout-single';
-                        divContainer.appendChild(clearCart);
-                    } else if (listItem.className === 'list-priceC') {
-                    // Price
-                        var listItemPrice = '$' + itemName[key];
-                        var listItemPriceElement = document.createElement('p');
-                        listItemPriceElement.innerHTML = listItemPrice;
-                        listItem.appendChild(listItemPriceElement);
-                    }
-                    divContainer.appendChild(listItem);
-
-                    divContainer.style.height = '200px';
+    function cartUpdate(itemName) {
+        alert("hello")
+        // Checkout List Append
+        for (var key in itemName) {
+            if (itemName.hasOwnProperty(key)) {
+                var listClass = ['list-titleC', 'list-priceC', 'list-descC', 'list-imageC']
+                i++;
+                var listItem = document.createElement('li');
+                listItem.className = listClass[i]
+                if (listItem.className !== 'list-imageC' && listItem.className !== 'list-priceC') {
+                    listItem.innerHTML = itemName[key];
+                } else if (listItem.className === 'list-imageC') {
+                // Item image
+                    var img = document.createElement('img');
+                    img.src = itemName[key];
+                    img.width = 175;
+                    listItem.appendChild(img);
+                // Clear cart symbol
+                    var clearCart = document.createElement('div');
+                    var clearCartLi = document.createElement('li');
+                    clearCart.appendChild(clearCartLi);
+                    clearCartLi.className = 'fas fa-trash-alt';
+                    clearCart.className = 'checkout-single';
+                    clearCart.addEventListener('click', () => {
+                        clearCart.parentNode.remove();
+                    });
+                    divContainer.appendChild(clearCart);
+                } else if (listItem.className === 'list-priceC') {
+                // Price
+                    var listItemPrice = '$' + itemName[key];
+                    var listItemPriceElement = document.createElement('p');
+                    listItemPriceElement.innerHTML = listItemPrice;
+                    listItem.appendChild(listItemPriceElement);
                 }
+                divContainer.appendChild(listItem);
+        
+                divContainer.style.height = '200px';
             }
             checkoutList.appendChild(divContainer);
         }
-
-
-
         
-        // Call the function
-        cartUpdate(handbagDeserialized);
-        cartUpdate(purseDeserialized);
-        cartUpdate(handbagDeserialized);
-        cartUpdate(purseDeserialized);
-        cartUpdate(handbagDeserialized);
-        cartUpdate(purseDeserialized);
-        cartUpdate(handbagDeserialized);
-        cartUpdate(purseDeserialized);
-
-        item = document.getElementsByClassName('checkout-single');
-        for (let i = 0; i <= item.length; i ++) {
-            item[i].addEventListener('click', () => {
-                item[i].parentNode.remove();
-            });
-        }
 
     }
 
@@ -270,9 +239,8 @@ if (window.location.pathname === '/rose-handbag') {
 }
 if (window.location.pathname === '/checkout') {
     universal()
-    checkout()
+    product()
+    cartUpdate(handbag)
 }
-
-    
+   
 });
-
