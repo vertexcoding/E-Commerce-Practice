@@ -54,11 +54,16 @@ body {
     color: #333;
     text-decoration: none;
 }
-#basketCount {
+#basketCountDiv {
     position: absolute;
     top: 4%;
     right: 6%;
     font-size: 25px;
+    display: inline-block;
+}
+#basketCount {
+    display: inline-block;
+
 }
 
 /* Main page products */
@@ -199,5 +204,15 @@ body {
 .checkout-single:hover {
     cursor: pointer;
     font-size: larger;
+}
+#clearAllCheckout {
+    position: absolute;
+    font-size: 40px;
+    top: 12%;
+    right: 7%;
+}
+#clearAllCheckout:hover {
+    font-size: 45px;
+    cursor: pointer;
 }
 
