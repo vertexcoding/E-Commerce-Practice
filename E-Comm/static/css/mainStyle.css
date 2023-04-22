@@ -192,6 +192,12 @@ body {
     font-size: 20px;
     font-weight: bold;  
 }
+.list-quantityC {
+    position: relative;
+    top: -68%;
+    left: 70%;
+    font-size: 20px;
+}
 .checkout-single { 
     position: relative;
     text-align: center;

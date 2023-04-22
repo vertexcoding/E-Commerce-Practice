@@ -92,18 +92,21 @@ handbag = {
     'price': 67.99,
     'desc': 'Handbag description unavailable',
     'image': '/static/handbag.png',
+    'quantity': 0,
 }
 purse = {
     'title': 'Tan Purse',
     'price': 42.00,
     'desc': 'Purse description unavailable',
     'image': '/static/purse.png',
+    'quantity': 0,
 }
 handbag2 = {
     'title': 'Tan Handbag',
     'price': 64.00,
     'desc': 'Handbag description unavailable',
     'image': '/static/handbag2.png',
+    'quantity': 0,
 }
 
 
@@ -155,7 +158,7 @@ handbag2 = {
 
 // Product page
     function product() {
-    // Increase quantity
+    // Increase/decrease quantity (Add to Cart)
     var quantityField = document.getElementById("quantity");
         function increaseQuantity() {
             var quantityValue = parseInt(quantityField.value);
@@ -176,8 +179,13 @@ handbag2 = {
             decreaseQuantity()
         });
 
-        basketCount = document.getElementById('basketCount');
-        addToCart = document.getElementById('addToCart');
+        // Add to cart and basket
+        const basketCount = document.getElementById('basketCount');
+        const addToCart = document.getElementById('addToCart');
+        if (localStorage.getItem('handbagQuantity') === null) {
+            localStorage.setItem('handbagQuantity', 0)
+        }
+        let handbagQuantity = localStorage.getItem('handbagQuantity');
 
         addToCart.addEventListener('click', () => {
 
@@ -185,8 +193,15 @@ handbag2 = {
             let ls = Number(i) + Number(quantityField.value)
             localStorage.setItem('basketCount', ls)
             basketCount.innerHTML = localStorage.getItem('basketCount');
-            Number(handbagQuantity) = Number(handbagQuantity) + Number(quantityValue);
-            localStorage.setItem('handbagCheckOut', handbagQuantity);
+            handbagQuantity = Number(handbagQuantity) + Number(quantityField.value);
+            alert(localStorage.getItem('handbagQuantity'))
+            localStorage.setItem('handbagQuantity', handbagQuantity);
+            /* localStorage.setItem('handbagCheckOut', handbagQuantity); */
+
+            if (localStorage.getItem('handbagCheckOut') === null) {
+                localStorage.setItem('handbagCheckOut', handbagQuantity)
+                alert(handbagQuantity)
+            }
             
         });
     }
@@ -198,17 +213,17 @@ handbag2 = {
     const checkoutList = document.getElementById('checkoutList');
     
     function checkout() {
-        function cartUpdate(itemName) {
+        function cartUpdate(itemName, quantity) {
             var i = -1;
             var divContainer = document.createElement('div')
             // Checkout List Append
             for (var key in itemName) {
                 i++;
                 if (itemName.hasOwnProperty(key)) {
-                    var listClass = ['list-titleC', 'list-priceC', 'list-descC', 'list-imageC']
+                    var listClass = ['list-titleC', 'list-priceC', 'list-descC', 'list-imageC', 'list-quantityC']
                     var listItem = document.createElement('li');
                     listItem.className = listClass[i]
-                    if (listItem.className !== 'list-imageC' && listItem.className !== 'list-priceC') {
+                    if (listItem.className !== 'list-imageC' && listItem.className !== 'list-priceC' && listItem.className !== 'list-quantityC') {
                         listItem.innerHTML = itemName[key];
                     } else if (listItem.className === 'list-imageC') {
                     // Item image
@@ -219,6 +234,7 @@ handbag2 = {
                     // Clear cart symbol
                         var clearCart = document.createElement('div');
                         var clearCartLi = document.createElement('li');
+                        clearCartLi.innerHTML = quantity;
                         clearCart.appendChild(clearCartLi);
                         clearCartLi.className = 'fas fa-trash-alt';
                         clearCart.className = 'checkout-single';
@@ -232,6 +248,11 @@ handbag2 = {
                         var listItemPriceElement = document.createElement('p');
                         listItemPriceElement.innerHTML = listItemPrice;
                         listItem.appendChild(listItemPriceElement);
+                    // Total Price
+                    } else if (listItem.className === 'list-quantityC') {
+                    var totalPrice = itemName.price * quantity;
+                    var totalPriceD = 'Total: $' + totalPrice;
+                    listItem.innerHTML = totalPriceD;
                     }
                     divContainer.appendChild(listItem);
             
@@ -240,21 +261,27 @@ handbag2 = {
                 checkoutList.appendChild(divContainer);
             }
         }
-        cartUpdate(handbag)
-        cartUpdate(purse)
-/*         window.addEventListener('load', () => {
+        
+        // Actuate onPageLoad
+        window.addEventListener('load', () => {
             if (localStorage.getItem('handbagCheckOut') === null) {
                 return;
-            } else if (localStorage.getItem('handbagCheckOut') === '1') {
-                cartUpdate(handbag)
+            } else if (localStorage.getItem('handbagCheckOut') !== null) {
+                x = localStorage.getItem('handbagQuantity')
+                cartUpdate(handbag, Number(x))
+                cartUpdate(handbag, Number(x))
+                
             }
-        }) */
+        }) 
 
         // Clear all items
         clearAllCheckout = document.getElementById('clearAllCheckout');
         clearAllCheckout.addEventListener('click', () => {
             localStorage.setItem('basketCount', 0)
+            localStorage.setItem('handbagQuantity', 0)
+            localStorage.removeItem('handbagCheckOut')
             basketCount.innerHTML = 0;
+            checkoutList.innerHTML = '';
         })
     }
 
