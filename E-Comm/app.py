@@ -14,6 +14,10 @@ def checkout():
 def roseHandbag():
     return render_template('rose-handbag.html')
 
+@app.route('/purse')
+def purse():
+    return render_template('purse.html')
+
 
 # JS & CSS
 @app.route('/mainScript.js')

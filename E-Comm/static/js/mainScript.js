@@ -146,10 +146,18 @@ handbag2 = {
         listprice[2].innerHTML = '$' + handbag2.price.toFixed(2);
 
         // Product event listeners
+        // Handbag
         listimage[0].addEventListener('mouseover', () => {
             listimage[0].style.cursor = 'pointer';
             listimage[0].addEventListener('click', () => {
-                window.location.href = '/rose-handbag'
+                window.location.href = '/rose-handbag';
+            });
+        });
+        // Purse
+        listimage[1].addEventListener('mouseover', () => {
+            listimage[1].style.cursor = 'pointer';
+            listimage[1].addEventListener('click', () => {
+                window.location.href = '/purse';
             });
         });
     }
@@ -185,7 +193,7 @@ handbag2 = {
         if (localStorage.getItem(itemQuantity) === null) {
             localStorage.setItem(itemQuantity, 0)
         }
-        let handbagQuantity = localStorage.getItem(itemQuantity);
+        let itemQuantVar = localStorage.getItem(itemQuantity);
 
         addToCart.addEventListener('click', () => {
 
@@ -193,12 +201,11 @@ handbag2 = {
             let ls = Number(i) + Number(quantityField.value)
             localStorage.setItem('basketCount', ls)
             basketCount.innerHTML = localStorage.getItem('basketCount');
-            handbagQuantity = Number(handbagQuantity) + Number(quantityField.value);
-            localStorage.setItem(itemQuantity, handbagQuantity);
-            /* localStorage.setItem('handbagCheckOut', handbagQuantity); */
+            itemQuantVar = Number(itemQuantVar) + Number(quantityField.value);
+            localStorage.setItem(itemQuantity, itemQuantVar);
 
             if (localStorage.getItem(checkoutQuantity) === null) {
-                localStorage.setItem(checkoutQuantity, handbagQuantity)
+                localStorage.setItem(checkoutQuantity, itemQuantVar)
             }
             
         });
@@ -210,7 +217,7 @@ handbag2 = {
     // Add to cart
     const checkoutList = document.getElementById('checkoutList');
     
-    function checkout(itemQuantity, checkoutQuantity) {
+    function checkout(itemQuantity, checkoutQuantity, itemTitle) {
         function cartUpdate(itemName, quantity) {
             const basketCount = document.getElementById('basketCount');
             var i = -1;
@@ -284,7 +291,7 @@ handbag2 = {
                 return;
             } else if (localStorage.getItem(checkoutQuantity) !== null) {
                 x = localStorage.getItem(itemQuantity)
-                cartUpdate(handbag, Number(x))
+                cartUpdate(itemTitle, Number(x))
             }
         }) 
 
@@ -296,7 +303,7 @@ handbag2 = {
             localStorage.removeItem(checkoutQuantity)
             basketCount.innerHTML = 0;
             checkoutList.innerHTML = '';
-        })
+        });
     }
 
 
@@ -304,16 +311,25 @@ handbag2 = {
 
 // Initialize
 if (window.location.pathname === '/') {
-    universal()
+    universal() 
     main()
 }
 if (window.location.pathname === '/rose-handbag') {
     universal()
     product('handbagQuantity', 'handbagCheckOut')
 }
+if (window.location.pathname === '/purse') {
+    universal()
+    product('purseQuantity', 'purseCheckOut')
+}
 if (window.location.pathname === '/checkout') {
     universal()
-    checkout('handbagQuantity', 'handbagCheckOut')
+    if (localStorage.getItem('handbagQuantity') !== null){
+        checkout('handbagQuantity', 'handbagCheckOut', handbag)
+    }
+    if (localStorage.getItem('purseQuantity') !== null) {
+        checkout('purseQuantity', 'purseCheckOut', purse)
+    }
 }
    
 });
