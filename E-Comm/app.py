@@ -18,6 +18,10 @@ def roseHandbag():
 def purse():
     return render_template('purse.html')
 
+@app.route('/handbag2')
+def handbag2():
+    return render_template('handbag2.html')
+
 
 # JS & CSS
 @app.route('/mainScript.js')
