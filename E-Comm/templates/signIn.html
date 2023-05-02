@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+{% block body %}
+<header id="signIn">Log In</header>
+<form id="signInForm">
+    <label for="email">Email:</label><br>
+    <input type="email" id="emailIn" name="email"><br>
+    
+    <label for="password">Password:</label><br>
+    <input type="password" id="passwordIn" name="password"><br>
+
+    <input type="button" value="Log in" id="signInBtn">
+</form>
+<header id="createAccountOption">Or click here to <a href="/createAccount">create account</a></header>
+{% endblock %}

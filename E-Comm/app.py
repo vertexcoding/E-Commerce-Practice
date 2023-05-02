@@ -10,6 +10,20 @@ def main():
 def checkout():
     return render_template('checkout.html')
 
+@app.route('/payment')
+def payment():
+    return render_template('payment.html')
+
+@app.route('/signIn')
+def signIn():
+    return render_template('signIn.html')
+
+@app.route('/createAccount')
+def createAccount():
+    return render_template('createAccount.html')
+
+
+# Products
 @app.route('/rose-handbag')
 def roseHandbag():
     return render_template('rose-handbag.html')
@@ -21,6 +35,10 @@ def purse():
 @app.route('/handbag2')
 def handbag2():
     return render_template('handbag2.html')
+
+@app.route('/leatherJacket')
+def leatherJacket():
+    return render_template('leatherJacket.html')
 
 
 # JS & CSS

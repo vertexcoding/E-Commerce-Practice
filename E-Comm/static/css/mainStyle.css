@@ -215,7 +215,13 @@ body {
     position: absolute;
     font-size: 40px;
     top: 12%;
-    right: 7%;
+    left: 30%;
+}
+#clearAllCheckoutText {
+    position: absolute;
+    font-size: 20px;
+    top: 14.5%;
+    left: 33%;
 }
 #clearAllCheckout:hover {
     font-size: 45px;
@@ -223,5 +229,61 @@ body {
 }
 #checkoutTotalPrice {
     font-size: 40px;
+}
+#checkoutBtn {
+    font-size: 20px;
+    width: 400px;
+    height: 30px;
+    background-color: orange;
+    border-color: orange;
+}
+#checkoutBtn:hover {
+    cursor: pointer;
+}
+
+/* Sign in page */
+#signInForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#signIn {
+    font-size: 50px;
+    font-weight: bold;
+    position: absolute;
+    top: 39%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#createAccountOption {
+    position: absolute;
+    top: 63%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Log in page */
+#LogIn {
+    font-size: 50px;
+    font-weight: bold;
+    position: absolute;
+    top: 39%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#signUpForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#signInSymbol {
+    position: absolute;
+    top: 6%;
+    left: 88%;
+    transform: translate(-50%, -50%);
+    font-size: 40px;
+
 }
 

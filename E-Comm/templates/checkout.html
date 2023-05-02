@@ -1,9 +1,11 @@
 {% extends 'main.html' %}
 {% block body %}
 <div class="fas fa-trash-alt" id="clearAllCheckout"></div>
+<div id="clearAllCheckoutText">Clear All</div>
 <div id="sectlist1">
+    
     <ul id="checkoutList">
-        <li id="checkoutTotalPrice"></li>
+        <li id="checkoutTotalPrice"></li><button id="checkoutBtn">Proceed to checkout</button>
     </ul>
 </div>
 {% endblock %}
