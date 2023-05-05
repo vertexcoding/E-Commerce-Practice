@@ -6,6 +6,10 @@ app = Flask(__name__, static_url_path='/static')
 def main():
     return render_template('main.html')
 
+@app.route('/handbags')
+def handbags():
+    return render_template('handbags.html')
+
 @app.route('/checkout')
 def checkout():
     return render_template('checkout.html')

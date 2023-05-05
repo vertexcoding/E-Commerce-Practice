@@ -3,12 +3,55 @@
 }
 #title {
     font-size: 60px;
+    font-family: 'Dancing Script', cursive;
     font-weight: bold;
     background-color: rgb(40, 40, 40);
 }
 body {
     background-color: rgb(21, 21, 21);
     color: rgb(219, 219, 219);
+}
+#modelImg {
+    transform: scaleX(-1) translate(-50%, -50%);
+    position: absolute;
+    top: 59.5%;
+    left: 71%;
+    height: 600px;
+}
+#shopIcon {
+    font-size: 40px;
+    font-family: 'Merriweather Sans', sans-serif;
+    position: absolute;
+    top: 40%;
+    left: 6%;
+}
+#shopBtn {
+    font-size: 30px;
+    width: 260px;
+    font-family: 'Merriweather Sans', sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 16%;
+}
+#shopBtn:hover {
+    cursor: pointer;
+}
+#validCurrenciesText {
+    font-size: 40px;
+    position: absolute;
+    font-family: 'Merriweather Sans', sans-serif;
+}
+#btc {
+    width: 100px;
+    position: absolute;
+    top: 20%;
+    left: 0%;
+}
+#xrp {
+    width: 107.5px;
+    position: absolute;
+    top: 20%;
+    left: 7%;
 }
 /* Drop down navbar */
 .menu-icon {
@@ -54,6 +97,11 @@ body {
     color: #333;
     text-decoration: none;
 }
+.menu-items {
+    z-index: 999;
+}
+
+/* Basket */
 #basketCountDiv {
     position: absolute;
     top: 4%;

@@ -1,16 +1,33 @@
 <!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <meta name="viewport" content="initial-scale=1, width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
     <script src="{{ url_for('mainScript') }}"></script>
     <link rel="stylesheet" href="{{ url_for('mainStyle') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Josefin+Sans:wght@700&family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Josefin+Sans:wght@700&family=Merriweather+Sans&family=Pacifico&display=swap" rel="stylesheet">
+
     <title>main</title>
 </head>
 <body>
     <div id="basketCountDiv"><i class="fas fa-shopping-cart" id="checkoutSymbol"></i><div id="basketCount">0</div></div>
     <i id="signInSymbol"></i>
     <header id="title">E-Commerce Template</header>
-    
     <div class="menu-icon">
         <div class="line"></div>
         <div class="line"></div>
@@ -27,15 +44,20 @@
     </div>
 
 
+
 {% block body %}
-    <div id="sectList">
-        <ul id="list">
-            <li class="list-item"> <img class="list-image"> <p class="list-title"></p> <p class="list-desc"></p><p class="list-price"></p></li>
-            <li class="list-item"> <img class="list-image"> <p class="list-title"></p> <p class="list-desc"></p><p class="list-price"></p></li>
-            <li class="list-item"> <img class="list-image"> <p class="list-title"></p> <p class="list-desc"></p><p class="list-price"></p></li>
-            <li class="list-item"> <img class="list-image"> <p class="list-title"></p> <p class="list-desc"></p><p class="list-price"></p></li>
-        </ul>
-    </div>
+<img id="modelImg", src="/static/model.png" alt="model">
+<!--Additional Valid Currencies-->
+<div>
+    <header id="validCurrenciesText">We <span style="color: rgb(151, 31, 31)">support</span>:</header>
+    <img id="btc" src="/static/btc.png" alt="btc">
+    <img id="xrp" src="/static/xrp.png" alt="xrp">
+</div>
+<!--Shop Access-->
+<div>
+    <section id="shopIcon"><header>New <span style="color: rgb(151, 31, 31)">Discounts</span> available daily!</header></section>
+    <section><button id="shopBtn"><a href="handbags">Shop Now</a></button></section>
+</div>
 {% endblock %}
 </body>
 </html>

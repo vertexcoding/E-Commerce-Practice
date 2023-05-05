@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         appearanceButton.addEventListener('click', () => {
             if (appearanceButton.innerHTML === 'Light Mode') {
-                lightMode() 
+                lightMode()
                 appearanceButton.innerHTML = ('Dark Mode')
                 localStorage.setItem('appearance', 'lightMode')
             } else {
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
         home.addEventListener('mouseover', () => {
             home.style.cursor = 'pointer';
             home.addEventListener('click', () => {
-                window.location.href = '/'
+                window.location.href = '/';
             });
         });
         
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // Main page
-    function main() {
+    function handbags() {
         // Add to basket
 
             const listimage = document.getElementsByClassName('list-image');
@@ -463,8 +463,7 @@ function signIn() {
 
 // Initialize
 if (window.location.pathname === '/') {
-    universal() 
-    main()
+    universal()
 }
 
 if (window.location.pathname === '/checkout') {
@@ -498,8 +497,14 @@ if (window.location.pathname === '/createAccount') {
     createAccount()
 }
 
+// Product categories
+if (window.location.pathname === '/handbags') {
+    universal()
+    handbags()
+}
 
-// Products 
+
+// Individual product pages 
 
 if (window.location.pathname === '/rose-handbag') {
     universal()
